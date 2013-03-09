@@ -7,7 +7,8 @@ arDrone 	= require 'ar-drone'
 vlc 		= require './vlc'
 
 client  	= arDrone.createClient()
-
+#anable shit
+client.config('general:navdata_demo', 'FALSE')
 
 commands = 
 	sko: (next=null) ->ewo
