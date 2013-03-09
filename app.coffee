@@ -5,6 +5,7 @@ async 		= require 'async'
 arDrone 	= require 'ar-drone'
 
 vlc 		= require './vlc'
+twitter		= require './twitter'
 
 client  	= arDrone.createClient()
 
@@ -27,7 +28,9 @@ client  	= arDrone.createClient()
 # 	'doublePhiThetaMixed'
 # ]
 
-animation_sequence = [
+dance_sequence = [
+	'doublePhiThetaMixed'
+	'doublePhiThetaMixed'
 	'doublePhiThetaMixed'
 ]
 
@@ -46,7 +49,7 @@ commands =
 
 		client.takeoff()
 
-		for i in animation_sequence then do(i) ->
+		for i in dance_sequence then do(i) ->
 
 			client.after interval, () ->
 				console.log i
