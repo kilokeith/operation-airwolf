@@ -10,6 +10,10 @@ client  	= arDrone.createClient()
 commands = 
 	sko: (next=null) ->
 		console.log 'sko'
+
+		#play mp3
+		vlc('audio/shake.mp3')
+
 		client.takeoff()
 
 		client
