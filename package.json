@@ -10,6 +10,7 @@
     "string": "*",
     "underscore": "*",
     "request": "*"
+    "commander": "*"
   },
   "engines": {
     "node": "0.8.x",
