@@ -30,13 +30,16 @@ queue 		= null
 # 	'doublePhiThetaMixed'
 # ]
 
-
 animation_sequence = [
-	[0, 'takeoff', 100]
-	[3000, 'wave', 15000]
-	[1000, 'doublePhiThetaMixed', 2000]
-	[1000, 'turnaround', 2000]
-	[3000, 'land', 0]
+	[0, 'takeoff', 0, "blank"]
+	[15000, 'doublePhiThetaMixed', 2000, 'blinkRed']
+	[2000, 'doublePhiThetaMixed', 2000, 'blinkGreen']
+	[1000, 'doublePhiThetaMixed', 1000, 'blinkOrange']
+	[1000, 'wave', 3000, 'leftGreenRightRed']
+	[2000, 'doublePhiThetaMixed', 2000, 'blinkRed']
+	[2000, 'doublePhiThetaMixed', 2000, 'blinkGreen']
+	[2000, 'flipBehind', 15, 'leftGreenRightRed']
+	[3000, 'land', 0, 'blank']
 ]
 
 timer = new Timer('100 ms')
@@ -59,6 +62,7 @@ set_animation_queue = () ->
 		interval = i[0]
 		command = i[1]
 		duration = i[2]
+		led = i[3]
 		times += interval
 		t = times
 		
@@ -67,8 +71,9 @@ set_animation_queue = () ->
 			switch command
 				when 'takeoff' then commands.takeoff()
 				when 'land' then commands.land()
-				else client.animate(i[1], i[2])
-
+				else 
+					client.animate(command, duration)
+					client.animateLeds(led, 2, 2)
 
 commands = 
 	sko: (next=null) ->
