@@ -1,3 +1,5 @@
+color 		= require 'color'
+
 arDrone 	= require 'ar-drone'
 client  	= arDrone.createClient()
 
@@ -60,9 +62,18 @@ commands =
 		client.stop()
 		client.land()
 		next() if next
-
 	
 	exit: -> process.exit()
+
+	crash: -> moo(func)
+
+#logs battery
+log_battery = (power) ->
+	if power % 10 is 0
+		console.log "#{power}%".red
+
+#events for clients
+client.on 'batteryChange', log_battery
 
 
 #aliases
@@ -70,7 +81,9 @@ commands.fuck = commands.land
 commands.die = commands.exit
 
 #please land, oh dear lord
-process.on 'exit', commands.land()
+process.on 'exit', commands.land
+process.on 'uncaughtException', commands.land
+
 
 
 #prompt
@@ -82,4 +95,4 @@ prompt = ->
 		else
 			prompt()
 		
-prompt()5
+prompt()
