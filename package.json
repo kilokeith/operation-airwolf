@@ -9,7 +9,7 @@
     "async": "*",
     "string": "*",
     "underscore": "*",
-    "request": "*",
+    "request": "*"
   },
   "engines": {
     "node": "0.8.x",
