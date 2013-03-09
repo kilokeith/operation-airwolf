@@ -9,31 +9,88 @@ exec 		= require('child_process').exec
 cmdr 		= require 'commander'
 
 commands = 
-	sko: (next=null) ->
+	sko: (next=null) ->ewo
 		console.log 'sko'
 		client.takeoff()
 
 		client
 			.after 5000, () ->
 				console.log "beat drop"
-				this.animateLeds('snakeGreenRed', 5, 2)
-			# .after 1000, () ->
-			# 	console.log "yawDance"
-			# 	this.animate('yawDance', 15000)
-			.after 1000, () ->
+				this.animateLeds('blinkGreen', 5, 2)
+
+			.after 300, () ->
 				console.log "beat drop"
+				this.animateLeds('blinkRed', 5, 2)
 				this.clockwise(-0.5)
 				this.up(0.5)
-			.after 1000, () ->
+				this.left(0.5)
+				this.front(0.5)
+			.after 300, () ->
 				console.log "beat drop"
 				this.clockwise(0.5)
 				this.down(0.5)
-			.after 3000, () ->
-				console.log "flipLeft"
-				this.animate('flipLeft', 15)
-			.after 3000, () ->
-				console.log "flipReft"
-				this.animate('flipRight', 15)
+				this.right(0.5)
+				this.back(0.5)
+			.after 300, () ->
+				console.log "beat drop"
+				this.animateLeds('blinkRed', 5, 2)
+				this.clockwise(-0.5)
+				this.up(0.5)
+				this.left(0.5)
+				this.front(0.5)
+			.after 300, () ->
+				console.log "beat drop"
+				this.clockwise(0.5)
+				this.down(0.5)
+				this.right(0.5)
+				this.back(0.5)
+			.after 300, () ->
+				console.log "beat drop"
+				this.animateLeds('blinkRed', 5, 2)
+				this.clockwise(-0.5)
+				this.up(0.5)
+				this.left(0.5)
+				this.front(0.5)
+			.after 300, () ->
+				console.log "beat drop"
+				this.clockwise(0.5)
+				this.down(0.5)
+				this.right(0.5)
+				this.back(0.5)
+			.after 300, () ->
+				console.log "beat drop"
+				this.animateLeds('blinkRed', 5, 2)
+				this.clockwise(-0.5)
+				this.up(0.5)
+				this.left(0.5)
+				this.front(0.5)
+			.after 300, () ->
+				console.log "beat drop"
+				this.clockwise(0.5)
+				this.down(0.5)
+				this.right(0.5)
+				this.back(0.5)
+			.after 300, () ->
+				console.log "beat drop"
+				this.animateLeds('blinkRed', 5, 2)
+				this.clockwise(-0.5)
+				this.up(0.5)
+				this.left(0.5)
+				this.front(0.5)
+			.after 300, () ->
+				console.log "beat drop"
+				this.clockwise(0.5)
+				this.down(0.5)
+				this.right(0.5)
+				this.back(0.5)
+
+
+			# .after 300, () ->
+			# 	console.log "flipLeft"
+			# 	this.animate('flipLeft', 15)
+			# .after 300, () ->
+			# 	console.log "flipReft"
+			# 	this.animate('flipRight', 15)
 			.after 2000, () ->
 				this.stop()
 				this.land()
@@ -77,5 +134,5 @@ prompt = ->
 			commands[cmd].call(null, prompt) 
 		else
 			prompt()
-
+bbvbvbvbvbbvbv
 prompt()
