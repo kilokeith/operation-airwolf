@@ -30,12 +30,12 @@ animation_sequence = [
 interval = 2000
 
 #anable shit
-client.config('general:navdata_demo', 'FALSE')
+client.config('general:navdata_demo', 'TRUE')
 
 commands = 
 	sko: (next=null) ->
 		console.log 'sko'
-
+		queue = async.queue()
 		#play mp3
 		vlc('audio/shake.mp3')
 
