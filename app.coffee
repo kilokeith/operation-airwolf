@@ -33,8 +33,9 @@ queue 		= null
 
 animation_sequence = [
 	[0, 'takeoff', 100]
-	[3000, 'doublePhiThetaMixed', 2000]
-	[2000, 'turnaround', 2000]
+	[3000, 'wave', 15000]
+	[1000, 'doublePhiThetaMixed', 2000]
+	[1000, 'turnaround', 2000]
 	[3000, 'land', 0]
 ]
 
@@ -99,7 +100,7 @@ commands =
 #logs battery
 log_battery = (power) ->
 	if power % 5 is 0
-		console.log "#{power}%".red
+		console.log "power level: #{power}%".red
 
 #events for clients
 client.on 'batteryChange', log_battery
