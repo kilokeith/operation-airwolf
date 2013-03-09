@@ -1,13 +1,12 @@
 Twit 		= require 'twit'
 
-
-#stream way
+#stream config
 twitter = new Twit
 	consumer_key: "SCZTAFZWXYihecad5eXuVA"
 	consumer_secret: "4wEAbn6oUClrFJvocdUQNncZ9aRaMS7R7XU8q1m1k"
+	
 
-#run the search and reset timer
-setup_tweet_stream = ->
+module.exports = do() ->
 	console.log 'setting up tweet_pipe', search
 	stream = twitter.stream "user"
 
@@ -16,6 +15,7 @@ setup_tweet_stream = ->
 		if tweet?.text? and tweet.text.search('shake') >= -1 and tweet.text.search(/^RT/) is -1
 			stream.emit "data", tweet.text + "\n"
 			#do the dance
+			stream.emit "got_tweet"
 			
 
 	stream.on "error", (error) ->
@@ -26,4 +26,4 @@ setup_tweet_stream = ->
 		setup_tweet_stream()
 
 
-
+	return stream
