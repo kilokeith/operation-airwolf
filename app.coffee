@@ -8,7 +8,7 @@ client  	= arDrone.createClient()
 
 
 commands = 
-	sko: (next=null) ->ewo
+	sko: (next=null) ->
 		console.log 'sko'
 
 		#play mp3
@@ -137,5 +137,4 @@ prompt = ->
 			commands[cmd].call(null, prompt) 
 		else
 			prompt()
-bbvbvbvbvbbvbv
 prompt()
