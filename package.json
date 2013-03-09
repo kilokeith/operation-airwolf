@@ -10,7 +10,8 @@
     "string": "*",
     "underscore": "*",
     "request": "*",
-    "commander": "*"
+    "commander": "*",
+    "color": "*"
   },
   "engines": {
     "node": "0.8.x",
