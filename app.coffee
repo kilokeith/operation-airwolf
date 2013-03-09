@@ -8,26 +8,31 @@ vlc 		= require './vlc'
 
 client  	= arDrone.createClient()
 
+# animation_sequence = [
+# 	'phiM30Deg'
+# 	'phi30Deg'
+# 	'thetaM30Deg'
+# 	'theta30Deg'
+# 	'theta20degYaw200deg'
+# 	'theta20degYawM200deg'
+# 	'turnaround'
+# 	'turnaroundGodown'
+# 	'yawShake'
+# 	'yawDance'
+# 	'phiDance'
+# 	'thetaDance'
+# 	'vzDance'
+# 	'wave'
+# 	'phiThetaMixed'
+# 	'doublePhiThetaMixed'
+# ]
+
 animation_sequence = [
-	'phiM30Deg'
-	'phi30Deg'
-	'thetaM30Deg'
-	'theta30Deg'
-	'theta20degYaw200deg'
-	'theta20degYawM200deg'
-	'turnaround'
-	'turnaroundGodown'
-	'yawShake'
-	'yawDance'
-	'phiDance'
-	'thetaDance'
-	'vzDance'
-	'wave'
-	'phiThetaMixed'
 	'doublePhiThetaMixed'
 ]
 
-interval = 2000
+interval = 3000
+duration = 3000
 
 #anable shit
 client.config('general:navdata_demo', 'FALSE')
@@ -45,9 +50,9 @@ commands =
 
 			client.after interval, () ->
 				console.log i
-				this.animate i, interval
+				this.animate i, duration
 
-		client.after 2000, () ->
+		client.after interval, () ->
 				this.stop()
 				this.land()
 		
