@@ -105,7 +105,7 @@ commands =
 #logs battery
 log_battery = (power) ->
 	if power % 5 is 0
-		console.log "#{power}%".red
+		console.log "power level: #{power}%".red
 
 #events for clients
 client.on 'batteryChange', log_battery
@@ -119,7 +119,8 @@ commands.die = commands.exit
 process.on 'exit', commands.land
 process.on 'uncaughtException', commands.land
 
-
+#twitter shit
+twitter.on 'got_tweet', commands.sko
 
 #prompt
 prompt = ->
