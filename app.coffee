@@ -69,6 +69,9 @@ commands =
 commands.fuck = commands.land
 commands.die = commands.exit
 
+#please land, oh dear lord
+process.on 'exit', commands.land()
+
 
 #prompt
 prompt = ->
