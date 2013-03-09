@@ -1,16 +1,19 @@
 color 		= require 'color'
-
+cmdr 		= require 'commander'
 arDrone 	= require 'ar-drone'
+
+vlc 		= require './vlc'
+
 client  	= arDrone.createClient()
 
-spawn 		= require('child_process').spawn
-exec 		= require('child_process').exec
-
-cmdr 		= require 'commander'
 
 commands = 
 	sko: (next=null) ->ewo
 		console.log 'sko'
+
+		#play mp3
+		vlc('audio/shake.mp3')
+
 		client.takeoff()
 
 		client
