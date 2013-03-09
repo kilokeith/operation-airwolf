@@ -11,7 +11,7 @@
     "underscore": "*",
     "request": "*",
     "commander": "*",
-    "color": "*",
+    "colors": "*",
     "underscore": "*"
   },
   "engines": {
