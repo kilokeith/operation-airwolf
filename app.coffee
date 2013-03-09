@@ -1,7 +1,8 @@
-color 		= require 'color'
+colors 		= require 'colors'
 cmdr 		= require 'commander'
 _ 			= require 'underscore'
 async 		= require 'async'
+Timer 		= require './timer.js'
 arDrone 	= require 'ar-drone'
 
 vlc 		= require './vlc'
@@ -9,6 +10,7 @@ twitter		= require './twitter'
 
 client  	= arDrone.createClient()
 
+queue 		= null
 # animation_sequence = [
 # 	'phiM30Deg'
 # 	'phi30Deg'
@@ -28,46 +30,69 @@ client  	= arDrone.createClient()
 # 	'doublePhiThetaMixed'
 # ]
 
-dance_sequence = [
-	'doublePhiThetaMixed'
-	'doublePhiThetaMixed'
-	'doublePhiThetaMixed'
+
+animation_sequence = [
+	[0, 'takeoff', 100]
+	[3000, 'doublePhiThetaMixed', 2000]
+	[2000, 'turnaround', 2000]
+	[3000, 'land', 0]
 ]
 
-interval = 3000
-duration = 3000
+timer = new Timer('100 ms')
 
-#anable shit
+#enable shit
 client.config('general:navdata_demo', 'FALSE')
+
+
+run_a_thing = (f, cb) ->
+	f(cb) if typeof f is 'function'
+
+
+set_animation_queue = () ->
+	#queue = async.queue(run_a_thing, 1)
+	
+	times = 0
+
+	#queue animations
+	for i in animation_sequence then do(i) ->
+		interval = i[0]
+		command = i[1]
+		duration = i[2]
+		times += interval
+		t = times
+		
+		timer.after "#{t} ms", () ->
+			console.log "command", command, i
+			switch command
+				when 'takeoff' then commands.takeoff()
+				when 'land' then commands.land()
+				else client.animate(i[1], i[2])
+
 
 commands = 
 	sko: (next=null) ->
 		console.log 'sko'
+		timer.start()
+		next() if next
 
+	takeoff: (next=null) ->
+		console.log 'takeoff'
 		#play mp3
 		vlc('audio/shake.mp3')
-
 		client.takeoff()
 
-		for i in dance_sequence then do(i) ->
-
-			client.after interval, () ->
-				console.log i
-				this.animate i, duration
-
-		client.after interval, () ->
-				this.stop()
-				this.land()
-		
 		next() if next
 
 	land: (next=null) ->
 		console.log 'land'
 		client.stop()
 		client.land()
+		timer.stop()
 		next() if next
 	
-	exit: -> process.exit()
+	exit: ->
+		timer.stop()
+		process.exit()
 
 	crash: -> moo(func)
 
@@ -93,11 +118,13 @@ process.on 'uncaughtException', commands.land
 #prompt
 prompt = ->
 	cmdr.prompt 'what is thy bidding?: ', (cmd) ->
-		console.log commands[cmd]
-		if commands[cmd]
+		console.log "OK (#{cmd})".green
+		if commands[cmd] and typeof commands[cmd] is 'function'
 			commands[cmd].call(null, prompt) 
 		else
 			prompt()
 
-
+#queue up animations
+set_animation_queue()
+#start initial prompt
 prompt()

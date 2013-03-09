@@ -11,9 +11,8 @@
     "underscore": "*",
     "request": "*",
     "commander": "*",
-    "ntwitter": "latest",
     "twit": "latest",
-    "color": "*",
+    "colors": "*",
     "underscore": "*"
   },
   "engines": {
