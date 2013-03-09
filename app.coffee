@@ -1,5 +1,7 @@
 color 		= require 'color'
 cmdr 		= require 'commander'
+_ 			= require 'underscore'
+async 		= require 'async'
 arDrone 	= require 'ar-drone'
 
 vlc 		= require './vlc'
@@ -112,7 +114,7 @@ commands =
 
 #logs battery
 log_battery = (power) ->
-	if power % 10 is 0
+	if power % 5 is 0
 		console.log "#{power}%".red
 
 #events for clients
@@ -137,5 +139,5 @@ prompt = ->
 			commands[cmd].call(null, prompt) 
 		else
 			prompt()
-bbvbvbvbvbbvbv
+
 prompt()
