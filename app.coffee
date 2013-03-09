@@ -12,43 +12,26 @@ commands =
 		client.takeoff()
 
 		client
-			.after 15500, () ->
+			.after 5000, () ->
 				console.log "beat drop"
-				this.clockwise(0.5)
 				this.animateLeds('snakeGreenRed', 5, 2)
-			.after 300, () ->
-				console.log "beat drop"
-				this.animate('yawShake', 15)
-			.after 300, () ->
-				console.log "beat drop"
-				this.animate('yawDance', 15)
-			.after 300, () ->
-				console.log "beat drop"
-				this.animate('phiDance', 15)
-			.after 300, () ->
-				console.log "beat drop"
-				this.animate('thetaDance', 15)
-			.after 300, () ->
-				console.log "beat drop"
-				this.animate('vzDance', 15)
-			.after 300, () ->
-				console.log "beat drop"
-				this.animate('wave', 15)
-			.after 300, () ->
-				console.log "beat drop"
-				this.animate('phiThetaMixed', 15)
-			.after 300, () ->
-				console.log "beat drop"
-				this.animate('doublePhiThetaMixed', 15)
-			.after 300, () ->
+			# .after 1000, () ->
+			# 	console.log "yawDance"
+			# 	this.animate('yawDance', 15000)
+			.after 1000, () ->
 				console.log "beat drop"
 				this.clockwise(-0.5)
-			.after 300, () ->
+				this.up(0.5)
+			.after 1000, () ->
 				console.log "beat drop"
 				this.clockwise(0.5)
+				this.down(0.5)
 			.after 3000, () ->
 				console.log "flipLeft"
 				this.animate('flipLeft', 15)
+			.after 3000, () ->
+				console.log "flipReft"
+				this.animate('flipRight', 15)
 			.after 2000, () ->
 				this.stop()
 				this.land()
@@ -79,4 +62,4 @@ prompt = ->
 		else
 			prompt()
 		
-prompt()5
+prompt()
