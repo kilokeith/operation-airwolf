@@ -2,11 +2,11 @@ colors 		= require 'colors'
 cmdr 		= require 'commander'
 _ 			= require 'underscore'
 async 		= require 'async'
-Timer 		= require './timer.js'
 arDrone 	= require 'ar-drone'
 
-vlc 		= require './vlc'
-twitter		= require './twitter'
+Timer 		= require './lib/timer.js'
+vlc 		= require './lib/vlc'
+twitter		= require './lib/twitter'
 
 client  	= arDrone.createClient()
 
