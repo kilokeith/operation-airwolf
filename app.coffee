@@ -21,8 +21,10 @@ drones = null
 
 main_sequence = [
 	[0, 'takeoff', 0, "blank"]
-	[15000, 'up', 0.6, "blinkRed"]
-	[100, 'doublePhiThetaMixed', 2000, 'blinkRed']
+	[3000, 'vzDance', 3000, 'blank']
+	[3000, 'vzDance', 3000, 'blank']
+	[3000, 'vzDance', 3000, 'blank']
+	[3000, 'vzDance', 3000, 'blank']
 	[2000, 'doublePhiThetaMixed', 2000, 'blinkGreen']
 	[1000, 'doublePhiThetaMixed', 1000, 'blinkOrange']
 	[1000, 'wave', 3000, 'leftGreenRightRed']
@@ -33,13 +35,14 @@ main_sequence = [
 ]
 
 shake_sequence = [
-	[15000, 'takeoff', 0, "blank"]
+	[14000, 'takeoff', 0, "blank"]
+	[3000, 'doublePhiThetaMixed', 2000, 'blinkRed']
 	[2000, 'doublePhiThetaMixed', 2000, 'blinkGreen']
-	[1000, 'wave', 1000, 'blinkOrange']
-	[1000, 'doublePhiThetaMixed', 3000, 'leftGreenRightRed']
-	[2000, 'wave', 2000, 'blinkRed']
+	[1000, 'doublePhiThetaMixed', 1000, 'blinkOrange']
+	[1000, 'wave', 3000, 'leftGreenRightRed']
+	[2000, 'doublePhiThetaMixed', 2000, 'blinkRed']
 	[2000, 'doublePhiThetaMixed', 2000, 'blinkGreen']
-	[2000, 'flipAhead', 15, 'leftGreenRightRed']
+	[2000, 'flipBehind', 15, 'leftGreenRightRed']
 	[3000, 'land', 0, 'blank']
 ]
 
@@ -55,18 +58,11 @@ setup_drones = ->
 		new Drone({ip:'192.168.1.51', name:'EandEDrone1'}, main_sequence, timer)
 		new Drone({ip:'192.168.1.52', name:'Groupon2'}, shake_sequence, timer)
 	]
-	
+
 	#for each drone
 	for drone in drones
 		#get it's animation timings
-		queue = drone.queue_animation_times()
-		###
-		#for each animation
-		for params in queue
-			#queue up the timing
-			#console.log "#{params.timing} ms", params
-			timer.after "#{params.timing} ms", do(drone, params) -> drone.command(params)
-		###
+		drone.queue_animation_times()
 				
 
 #terminal commands 
