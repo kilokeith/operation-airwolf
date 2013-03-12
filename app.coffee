@@ -21,12 +21,12 @@ drones = null
 
 main_sequence = [
 	[0, 'takeoff', 0, "blank"]
-	[3000, 'vzDance', 3000, 'blank']
-	[3000, 'vzDance', 3000, 'blank']
-	[3000, 'vzDance', 3000, 'blank']
-	[3000, 'vzDance', 3000, 'blank']
-	[3000, 'vzDance', 3000, 'blank']
-	[1000, 'up', 0.6, 'blinkRed']
+	[3000, 'vzDance', 1500, 'blank']
+	[3000, 'phiDance', 1500, 'blank']
+	[3000, 'vzDance', 1500, 'blank']
+	[3000, 'phiDance', 1500, 'blank']
+	[3000, 'vzDance', 1500, 'blank']
+	[1000, 'up', 0.9, 'blinkRed']
 	[1000, 'stop', 0, 'blinkOrange']
 	[2000, 'doublePhiThetaMixed', 2000, 'blinkGreen']
 	[1000, 'doublePhiThetaMixed', 1000, 'blinkOrange']
@@ -45,7 +45,7 @@ shake_sequence = [
 	[1000, 'wave', 3000, 'leftGreenRightRed']
 	[2000, 'doublePhiThetaMixed', 2000, 'blinkRed']
 	[2000, 'doublePhiThetaMixed', 2000, 'blinkGreen']
-	[2000, 'flipBehind', 15, 'leftGreenRightRed']
+	[2000, 'flipAhead', 15, 'leftGreenRightRed']
 	[3000, 'land', 0, 'blank']
 ]
 
