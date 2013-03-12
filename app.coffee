@@ -98,8 +98,8 @@ commands.die = commands.exit
 
 #-----------error handling----------#
 #please land, oh dear lord
-#process.on 'exit', commands.land
-#process.on 'uncaughtException', commands.land
+process.on 'exit', commands.land
+process.on 'uncaughtException', commands.land
 
 
 
